@@ -20,10 +20,10 @@ $res = mysqli_query($conn, 'SELECT * FROM guestbook');
 ?>
 <div class="container">
     <div class="form">
-        <p class="ex1"><h1><center>How are you today</center></h1></p>
+        <p class="ex1"><h1><center>How do you feel?</center></h1></p>
     </div>
-  <table width="800" border="1" class="table table-dark table-hover table-striped" class="center" >
-    <thead class="thead-dark">
+  <table width="800" border="1" class="table table-pink table-hover table-striped" class="center" >
+    <thead class="thead-pink">
     <tr class="active">
       <th width="200"> <div align="center">Name</div></th>
       <th width="500"> <div align="center">Felt</div></th>
@@ -37,7 +37,7 @@ while($Result = mysqli_fetch_array($res))
   <tr>
     <td><center><?php echo $Result['Name'];?></center></td>
     <td><center><?php echo $Result['Comment'];?></center></td>
-    <td><center><a href="formindex.html"><input type="submit" value="Edit" class="btn-default"></a>&nbsp;&nbsp;<a href="formdelete.html"><input type="submit" value="Delete"  class="btn-default"></a></center></td>
+    <td><center><a href="index.html"><input type="submit" value="Edit" class="btn-default"></a>&nbsp;&nbsp;<a href="delete.html"><input type="submit" value="Delete"  class="btn-default"></a></center></td>
   </tr>
 <?php
 }
