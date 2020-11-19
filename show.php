@@ -43,7 +43,7 @@ while($Result = mysqli_fetch_array($res))
 }
 ?>
 </table>
-<a href="insert.html"><input type="submit" value="ADD" class="btn-default btn-sm"></a>
+<a href="add.php" class="btn btn-success">Add+</a>
 <?php
 mysqli_close($conn);
 ?>
