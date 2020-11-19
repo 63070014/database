@@ -43,7 +43,7 @@ while($Result = mysqli_fetch_array($res))
 }
 ?>
 </table>
-<a href="add.php" class="btn btn-success">Add+</a>
+<a href="insert.html" class="btn btn-success">Add+</a>
 <?php
 mysqli_close($conn);
 ?>
