@@ -33,19 +33,19 @@ mysqli_real_connect($conn, 'datadata.mysql.database.azure.com', 'datadata@datada
     <?php } ?>
 
     <form method="post" class="form-horizontal">
-        <div class+'form-group'>
+        <div class='form-group'>
             <label for="Name" class='col-sm-3 control-label'>Name</label>
             <div class='col-sm-6'>
                 <input type='text' name='txt_name' class='form-control' placeholder='Enter Name'></input>
             </div>
         </div>
-        <div class+'form-group'>
+        <div class='form-group'>
             <label for="Comment" class='col-sm-3 control-label'>Comment</label>
             <div class='col-sm-6'>
                 <input type='text' name='txt_comment' class='form-control' placeholder='Enter Comment'></input>
             </div>
         </div>
-        <div class+'form-group'>
+        <div class='form-group'>
             <div class='col-sm-offset-3 col-sm-9 mt-5'>
                 <input type='Submit' name='btn_insert' class='btn btn-success' value='Insert'></input>
                 <a href='show.php' class='btn btn-danger'>Cancel</a>
