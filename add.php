@@ -1,7 +1,33 @@
-<?php
-$conn = mysqli_init();
-mysqli_real_connect($conn, 'datadata.mysql.database.azure.com', 'datadata@datadata', 'PuiFai2023', 'ITFLab', 3306);
+<?php 
+    require_once('connection.php');
+
+    if (isset($_REQUEST['btn_insert'])) {
+        $name = $_REQUEST['txt_name'];
+        $comment = $_REQUEST['txt_comment'];
+
+        if (empty($firstname)) {
+            $errorMsg = "Please enter Name";
+        } else if (empty($lastname)) {
+            $errorMsg = "please Enter comment";
+        } else {
+            try {
+                if (!isset($errorMsg)) {
+                    $insert_stmt = $db->prepare("INSERT INTO tbl_person(name, comment) VALUES (:name, :comment)");
+                    $insert_stmt->bindParam(':name', $name);
+                    $insert_stmt->bindParam(':comment', $comment);
+
+                    if ($insert_stmt->execute()) {
+                        $insertMsg = "Insert Successfully!!";
+                        header("refresh:2;show.php");
+                    }
+                }
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,48 +35,56 @@ mysqli_real_connect($conn, 'datadata.mysql.database.azure.com', 'datadata@datada
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add</title>
 
-    <link rel="stlylesheet" href="bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
 </head>
 <body>
 
-    <div class='container'>
-    <div class='display-3 text-center'>Add+</div>
+    <div class="container">
+    <div class="display-3 text-center">Add</div>
 
-    <?php
-        if (isset($errorMsg)) {
+    <?php 
+         if (isset($errorMsg)) {
     ?>
         <div class="alert alert-danger">
-            <strong>Wrong! <?php echo $errorMsg; ?> </strong>
+            <strong>Wrong! <?php echo $errorMsg; ?></strong>
         </div>
     <?php } ?>
+    
 
-    <?php
-        if (isset($insertMsg)) {
+    <?php 
+         if (isset($insertMsg)) {
     ?>
         <div class="alert alert-success">
-            <strong>Succes! <?php echo $imsertMsg; ?> </strong>
+            <strong>Success! <?php echo $insertMsg; ?></strong>
         </div>
     <?php } ?>
 
-    <form method="post" class="form-horizontal">
-            <div class='form-group'>
-                <label for="Name" class='col-sm-3 control-label'>Name</label>
-                <div class='col-sm-6'>
-                    <input type='text' name='txt_name' class='form-control' placeholder='Enter Name'></input>
+    <form method="post" class="form-horizontal mt-5">
+            
+            <div class="form-group text-center">
+                <div class="row">
+                    <label for="name" class="col-sm-3 control-label">Fisrtname</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="txt_name" class="form-control" placeholder="Enter name">
+                    </div>
                 </div>
             </div>
-            <div class='form-group'>
-                <label for="Comment" class='col-sm-3 control-label'>Comment</label>
-                <div class='col-sm-6'>
-                    <input type='text' name='txt_comment' class='form-control' placeholder='Enter Comment'></input>
+            <div class="form-group text-center">
+                <div class="row">
+                    <label for="name" class="col-sm-3 control-label">Comment</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="txt_comment" class="form-control" placeholder="Enter comment">
+                    </div>
                 </div>
             </div>
-            <div class='form-group'>
-                <div class='col-sm-offset-3 col-sm-9 mt-5'>
-                    <input type='Submit' name='btn_insert' class='btn btn-success' value='Insert'></input>
-                    <a href='show.php' class='btn btn-danger'>Cancel</a>
+            <div class="form-group text-center">
+                <div class="col-md-12 mt-3">
+                    <input type="submit" name="btn_insert" class="btn btn-success" value="Add">
+                    <a href="show.php" class="btn btn-danger">Cancel</a>
                 </div>
             </div>
+
+
     </form>
 
     <script src="js/slim.js"></script>
